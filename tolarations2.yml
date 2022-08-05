@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deployment
+  labels:
+    author: trinath
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      author: trinath
+  template:
+    metadata:
+      name: tomcat-pod
+      labels:
+        author: trinath
+    spec:
+      containers:
+        - name: tomcat
+          image: tomee
+      tolerations:
+        - key: node
+          operator: Equal
+          value: trinath
+          effect: NoSchedule
+...
